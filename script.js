@@ -39,7 +39,7 @@ function showQuestion(index) {
         const optionElement = document.createElement('div');
         optionElement.className = 'option';
         optionElement.textContent = option.text;
-        optionElement.onclick = () => selectOption(currentQuestionIndex, optionIndex);
+        optionElement.onclick = () => selectOption(index, optionIndex);
         optionsContainer.appendChild(optionElement);
     });
 }
@@ -127,7 +127,7 @@ function showResult() {
     // 显示结果数据
     document.getElementById('personality-type').textContent = resultData.name;
     document.getElementById('personality-traits').textContent = resultData.traits;
-    document.getElementById('personality-quote').textContent = resultData.quote;
+    document.getElementById('personality-quote').textContent = '"' + resultData.quote + '"';
     document.getElementById('personality-advice').textContent = resultData.advice;
     document.getElementById('result-image').src = resultData.image;
 
@@ -223,10 +223,3 @@ function generatePoster() {
         URL.revokeObjectURL(url);
     });
 }
-
-// 为使选择效果起作用，需要在选项选中时添加样式
-// CSS样式将在style.css中定义
-document.addEventListener('DOMContentLoaded', function() {
-    // 初始化
-    document.getElementById('total-questions').textContent = questions.length;
-});
