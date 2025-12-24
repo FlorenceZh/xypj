@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宴饮人格鉴定：你的社交自我属于古希腊还是中国？</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 欢迎页面 -->
+        <div id="welcome" class="page active">
+            <div class="welcome-content">
+                <h1>宴饮人格鉴定</h1>
+                <h2>你的社交自我属于古希腊还是中国？</h2>
+                <div class="welcome-image">
+                    <img src="images/placeholder.jpg" alt="宴饮场景">
+                </div>
+                <p class="description">通过12个宴饮场景问题，揭示你的社交人格是古代对话家还是礼仪大师</p>
+                <button class="start-btn" onclick="startQuiz()">开始测试</button>
+            </div>
+        </div>
+
+        <!-- 测试页面 -->
+        <div id="quiz" class="page">
+            <div class="quiz-header">
+                <div class="progress-bar">
+                    <div class="progress" id="progress"></div>
+                </div>
+                <span class="progress-text">第 <span id="current-question">1</span> / <span id="total-questions">12</span> 题</span>
+            </div>
+
+            <div class="question-container">
+                <h2 id="question-title"></h2>
+                <div id="question-options" class="options-container"></div>
+            </div>
+        </div>
+
+        <!-- 结果页面 -->
+        <div id="result" class="page">
+            <div class="result-content">
+                <div class="result-header">
+                    <h1>你是</h1>
+                    <h2 id="personality-type"></h2>
+                </div>
+
+                <div class="result-image">
+                    <img id="result-image" src="images/placeholder.jpg" alt="人格类型形象">
+                </div>
+
+                <div class="result-description">
+                    <h3>特征：</h3>
+                    <p id="personality-traits"></p>
+
+                    <h3>名言：</h3>
+                    <blockquote id="personality-quote"></blockquote>
+
+                    <h3>建议：</h3>
+                    <p id="personality-advice"></p>
+                </div>
+
+                <div class="result-details">
+                    <div class="score-breakdown">
+                        <p>古希腊属性：<span id="dialogue-score"></span>%</p>
+                        <p>中国传统属性：<span id="role-score"></span>%</p>
+                    </div>
+                </div>
+
+                <div class="result-actions">
+                    <button class="share-btn" onclick="generatePoster()">生成分享海报</button>
+                    <button class="restart-btn" onclick="restartQuiz()">重新测试</button>
+                </div>
+
+                <div class="bonus-easter-egg" id="bonus-easter-egg" style="display: none;">
+                    <h3>彩蛋：如果你在古希腊或中国宴饮中，你希望是：</h3>
+                    <div id="bonus-choices" class="bonus-options"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 海报生成画布 -->
+    <canvas id="poster-canvas" style="display: none;"></canvas>
+
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
