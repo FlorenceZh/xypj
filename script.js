@@ -68,8 +68,8 @@ function selectOption(questionIndex, optionIndex) {
             currentQuestionIndex++;
             showQuestion(currentQuestionIndex);
         } else {
-            // 显示结果页面的彩蛋选择
-            if (scores.dialogue > scores.role * 1.5 || scores.role > scores.dialogue * 1.5) {
+            // 显示结果页面的彩蛋选择（随机2%概率触发）
+            if (Math.random() < 0.02) {  // 2%概率
                 showBonusQuestion();
             } else {
                 showResult();
@@ -112,11 +112,11 @@ function showResult() {
 
     // 确定人格类型
     let personalityType;
-    if (scores.dialogue + scores.role < 20) {
+    if (scores.dialogue + scores.role < 30) {
         personalityType = "low-both";
-    } else if (dialogueScore >= 70) {
+    } else if (dialogueScore >= 60) {
         personalityType = "dialogue-heavy";
-    } else if (roleScore >= 70) {
+    } else if (roleScore >= 60) {
         personalityType = "role-heavy";
     } else {
         personalityType = "balanced";
@@ -213,7 +213,28 @@ function generatePoster() {
     ctx.fillStyle = '#7f8c8d';
     ctx.fillText('宴饮人格鉴定 - 古希腊vs中国社交观', canvas.width / 2, 1150);
 
-    // 下载海报
+    // 加载并绘制二维码
+    const qrCode = new Image();
+    qrCode.onload = function() {
+        // 清除之前绘制的占位矩形
+        ctx.clearRect(canvas.width / 2 - 100, 900, 200, 200);
+
+        // 绘制二维码图片
+        ctx.drawImage(qrCode, canvas.width / 2 - 100, 900, 200, 200);
+
+        // 下载海报
+        downloadPoster();
+    };
+    qrCode.onerror = function() {
+        // 如果二维码加载失败，仍然使用占位文本
+        downloadPoster();
+    };
+    qrCode.src = 'images/QRcode.png';
+}
+
+function downloadPoster() {
+    const canvas = document.getElementById('poster-canvas');
+    const personalityType = document.getElementById('personality-type').textContent;
     canvas.toBlob(function(blob) {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');

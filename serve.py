@@ -26,7 +26,7 @@ class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
 def start_server():
     handler = MyHTTPRequestHandler
     httpd = socketserver.TCPServer(("", PORT), handler)
-    print(f"\n🚀 本地服务器已启动")
+    print("本地服务器已启动")
     print(f"📍 访问地址: http://localhost:{PORT}")
     print(f"🌐 局域网访问: http://{get_local_ip()}:{PORT}")
     print(f"\n✨ 正在浏览器中打开...")
