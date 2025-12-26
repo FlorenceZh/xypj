@@ -27,9 +27,9 @@ def start_server():
     handler = MyHTTPRequestHandler
     httpd = socketserver.TCPServer(("", PORT), handler)
     print("本地服务器已启动")
-    print(f"📍 访问地址: http://localhost:{PORT}")
-    print(f"🌐 局域网访问: http://{get_local_ip()}:{PORT}")
-    print(f"\n✨ 正在浏览器中打开...")
+    print("访问地址: http://localhost:{}".format(PORT))
+    print("局域网访问: http://{}:{}".format(get_local_ip(), PORT))
+    print("\n正在浏览器中打开...")
 
     # 3秒后自动打开浏览器
     def open_browser():

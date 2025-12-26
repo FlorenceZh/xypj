@@ -162,7 +162,7 @@ body {
 }
 
 .option.selected {
-    background: #e74c3c;
+    background: greenyellow;
     color: white;
     animation: selectPulse 0.5s ease;
 }
